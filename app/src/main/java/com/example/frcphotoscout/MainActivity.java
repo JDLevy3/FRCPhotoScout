@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             RequestQueue queue = Volley.newRequestQueue(this);
 
             String url = "https://www.thebluealliance.com/api/v3/event/";
-            System.out.println(key);
+            //System.out.println(key);
             url += key;
             url += "/teams/simple?X-TBA-Auth-Key=X0YXXGjfE4C5TkeDFUYHtUvphev1Y3fuVffMPU2qgitwTAxLm8vwkzDoA3NW6yt7";
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -66,20 +66,20 @@ public class MainActivity extends AppCompatActivity {
     }
     //Crashes when loading teams
     private void listTeams(String response) {
-        System.out.println(response);
+        //System.out.println(response);
         LinearLayout teamList = findViewById(R.id.teamList);
         JsonParser parser = new JsonParser();
         JsonElement tList = parser.parse(response);
         JsonArray tArray = tList.getAsJsonArray();
         for(JsonElement tElement: tArray) {
-            View messageChunk = getLayoutInflater().inflate(R.layout.tournament_chunk,
+            View messageChunk = getLayoutInflater().inflate(R.layout.team_chunk,
                     teamList, false);
             //populate chunk
             JsonObject tObject = tElement.getAsJsonObject();
             String key = tObject.get("key").getAsString();
             TextView teamName = messageChunk.findViewById(R.id.teamName);
             TextView teamNumber = messageChunk.findViewById(R.id.teamNumber);
-            teamName.setText(tObject.get("name").getAsString());
+            teamName.setText(tObject.get("nickname").getAsString());
             teamNumber.setText(tObject.get("team_number").getAsString());
 
             //chunk onClicklistener

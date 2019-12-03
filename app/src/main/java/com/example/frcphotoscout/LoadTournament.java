@@ -59,7 +59,7 @@ public class LoadTournament extends AppCompatActivity {
 
     }
     private void listTournaments(String response) {
-        System.out.println(response);
+        //System.out.println(response);
         LinearLayout tournamentList = findViewById(R.id.tournamentList);
         JsonParser parser = new JsonParser();
         JsonElement tList = parser.parse(response);
