@@ -22,10 +22,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static List<Team> teamKeys = new ArrayList<>();
+    public static Map<String, Team> teamKeys = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +79,12 @@ public class MainActivity extends AppCompatActivity {
             //populate chunk
             JsonObject tObject = tElement.getAsJsonObject();
             String key = tObject.get("key").getAsString();
+            Team t = new Team(tObject.get("team_number").getAsString(), tObject.get("nickname").getAsString(), key);
             TextView teamName = messageChunk.findViewById(R.id.teamName);
             TextView teamNumber = messageChunk.findViewById(R.id.teamNumber);
-            teamName.setText(tObject.get("nickname").getAsString());
-            teamNumber.setText(tObject.get("team_number").getAsString());
+            teamName.setText(t.getName());
+            teamNumber.setText(t.getNumber());
+            teamKeys.put(key, t);
 
             //chunk onClicklistener
             Intent selectedTeam = new Intent(this, TeamInfo.class);

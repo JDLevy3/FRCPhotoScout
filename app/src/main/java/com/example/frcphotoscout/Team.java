@@ -12,24 +12,24 @@ import android.graphics.drawable.Drawable;
 
 public class Team {
 
-    private int number;
+    private String number;
     private String name;
     private String key;
     private String report;
     private Bitmap thumbnail;
     private Drawable image;
 
-    public Team(int number, String name, String key) {
+    public Team(String number, String name, String key) {
         this.number = number;
         this.name = name;
         this.key = key;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
