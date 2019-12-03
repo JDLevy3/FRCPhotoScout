@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/teamParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/teamNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_weight="0"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingTop="8dp"
+        android:paddingRight="?attr/listPreferredItemPaddingRight"
+        android:text="3082"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingRight="?attr/listPreferredItemPaddingRight"
+        android:text="Chicken Bot Pie"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/teamImageThumb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_weight="0"
+        android:cropToPadding="false"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingTop="8dp"
+        android:paddingRight="?attr/listPreferredItemPaddingRight"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+</LinearLayout>
