@@ -29,6 +29,7 @@ public class TeamInfo extends AppCompatActivity {
         }
     }
     private void takePhoto() {
+        // This currently just opens the camera
         final int REQUEST_IMAGE_CAPTURE = 1;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

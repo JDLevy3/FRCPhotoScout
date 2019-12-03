@@ -24,6 +24,8 @@ import com.google.gson.JsonParser;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 public class LoadTournament extends AppCompatActivity {
 
     @Override
@@ -36,7 +38,10 @@ public class LoadTournament extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         //change year to get the year and not just 2020
-        String url ="https://www.thebluealliance.com/api/v3/events/2020/simple?X-TBA-Auth-Key=X0YXXGjfE4C5TkeDFUYHtUvphev1Y3fuVffMPU2qgitwTAxLm8vwkzDoA3NW6yt7";
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String url ="https://www.thebluealliance.com/api/v3/events/";
+        url += year;
+        url += "/simple?X-TBA-Auth-Key=X0YXXGjfE4C5TkeDFUYHtUvphev1Y3fuVffMPU2qgitwTAxLm8vwkzDoA3NW6yt7";
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
