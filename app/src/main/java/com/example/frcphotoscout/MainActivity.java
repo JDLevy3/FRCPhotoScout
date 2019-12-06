@@ -3,10 +3,12 @@ package com.example.frcphotoscout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +30,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static Map<String, Team> teamKeys = new HashMap<>();
+    //private String key;
+    private LinearLayout teamList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     //Crashes when loading teams
     private void listTeams(String response) {
         //System.out.println(response);
-        LinearLayout teamList = findViewById(R.id.teamList);
+        teamList = findViewById(R.id.teamList);
         JsonParser parser = new JsonParser();
         JsonElement tList = parser.parse(response);
         JsonArray tArray = tList.getAsJsonArray();
@@ -80,17 +84,50 @@ public class MainActivity extends AppCompatActivity {
             JsonObject tObject = tElement.getAsJsonObject();
             String key = tObject.get("key").getAsString();
             Team t = new Team(tObject.get("team_number").getAsString(), tObject.get("nickname").getAsString(), key);
-            TextView teamName = messageChunk.findViewById(R.id.teamName);
-            TextView teamNumber = messageChunk.findViewById(R.id.teamNumber);
-            teamName.setText(t.getName());
-            teamNumber.setText(t.getNumber());
+            //TextView teamName = messageChunk.findViewById(R.id.teamName);
+            //TextView teamNumber = messageChunk.findViewById(R.id.teamNumber);
+            //teamName.setText(t.getName());
+            //teamNumber.setText(t.getNumber());
             teamKeys.put(key, t);
+            //if (teamKeys.get(key).getThumbnail() != null) {
+            //    ImageView i = messageChunk.findViewById(R.id.teamImageThumb);
+            //    i.setImageBitmap(teamKeys.get(key).getThumbnail());
+
+            //}
 
             //chunk onClicklistener
-            Intent selectedTeam = new Intent(this, TeamInfo.class);
-            selectedTeam.putExtra("key", key);
-            messageChunk.setOnClickListener(unused -> startActivity(selectedTeam));
-            teamList.addView(messageChunk);
+            //Intent selectedTeam = new Intent(this, TeamInfo.class);
+            //selectedTeam.putExtra("key", key);
+            //messageChunk.setOnClickListener(unused -> startActivity(selectedTeam));
+            //teamList.addView(messageChunk);
+        }
+        drawUI();
+    }
+    public void onResume() {
+        super.onResume();
+        drawUI();
+    }
+    private void drawUI() {
+        if (teamList != null) {
+            teamList.removeAllViews();
+            for (Map.Entry<String, Team> entry : teamKeys.entrySet()) {
+                View messageChunk = getLayoutInflater().inflate(R.layout.team_chunk,
+                        teamList, false);
+                Team t = teamKeys.get(entry.getKey());
+                TextView teamName = messageChunk.findViewById(R.id.teamName);
+                TextView teamNumber = messageChunk.findViewById(R.id.teamNumber);
+                teamName.setText(t.getName());
+                teamNumber.setText(t.getNumber());
+                if (teamKeys.get(entry.getKey()).getThumbnail() != null) {
+                    ImageView teamThumb = messageChunk.findViewById(R.id.teamImageThumb);
+                    teamThumb.setImageBitmap(teamKeys.get(entry.getKey()).getThumbnail());
+                }
+                //chunk onClicklistener
+                Intent selectedTeam = new Intent(this, TeamInfo.class);
+                selectedTeam.putExtra("key", entry.getKey());
+                messageChunk.setOnClickListener(unused -> startActivity(selectedTeam));
+                teamList.addView(messageChunk);
+            }
         }
     }
 }
