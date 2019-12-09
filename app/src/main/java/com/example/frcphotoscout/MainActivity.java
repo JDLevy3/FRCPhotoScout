@@ -103,10 +103,12 @@ public class MainActivity extends AppCompatActivity {
         }
         drawUI();
     }
+    // Is called when mainactivity is back into focus, allows thumbnails to be displayed properly after they are taken
     public void onResume() {
         super.onResume();
         drawUI();
     }
+
     private void drawUI() {
         if (teamList != null) {
             teamList.removeAllViews();
@@ -130,4 +132,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }

@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/eventName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
         android:paddingRight="?attr/listPreferredItemPaddingRight"
-        android:text="TextView" />
+        android:text="TextView"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/eventDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/eventDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center_horizontal"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
         android:paddingTop="8dp"
         android:paddingRight="?attr/listPreferredItemPaddingRight"
-        android:text="TextView" />
+        android:text="TextView"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBaseline_toBaselineOf="@+id/eventName"
+        app:layout_constraintEnd_toStartOf="@+id/eventCity"
+        app:layout_constraintStart_toEndOf="@+id/eventName" />
 
     <TextView
         android:id="@+id/eventCity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
         android:gravity="center"
-        android:text="TextView" />
-</LinearLayout>
+        android:text="TextView"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBaseline_toBaselineOf="@+id/eventDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eventDate" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -35,11 +36,19 @@ public class TeamInfo extends AppCompatActivity {
         if(MainActivity.teamKeys.get(getIntent().getStringExtra("key")).getReport() != null) {
             teamInfo.setText(MainActivity.teamKeys.get(getIntent().getStringExtra("key")).getReport());
         }
+        //ImageView teamThumb = findViewById(R.id.teamImageThumb);
+        Bitmap thumbnail = MainActivity.teamKeys.get(getIntent().getStringExtra("key")).getThumbnail();
+        if(thumbnail != null) {
+            //teamThumb.setImageBitmap(thumbnail);
+            //Sets large orange box also to thumbnail, is bad
+            ImageView teamPhoto = findViewById(R.id.teamPhoto);
+            teamPhoto.setImageBitmap(thumbnail);
+        }
+
     }
     final int REQUEST_IMAGE_CAPTURE = 1;
     private void takePhoto() {
-        // This currently just opens the camera
-
+        // This currently just opens the camera and saves thumbnail
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -51,6 +60,8 @@ public class TeamInfo extends AppCompatActivity {
             Bundle extras = takePictureIntent.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             MainActivity.teamKeys.get(key).setThumbnail(imageBitmap);
+            ImageView teamPhoto = findViewById(R.id.teamPhoto);
+            teamPhoto.setImageBitmap(imageBitmap);
         }
     }
 
@@ -66,4 +77,5 @@ public class TeamInfo extends AppCompatActivity {
         EditText report = findViewById(R.id.teamInfo);
         MainActivity.teamKeys.get(getIntent().getStringExtra("key")).setReport(report.getText().toString());
     }
+
 }

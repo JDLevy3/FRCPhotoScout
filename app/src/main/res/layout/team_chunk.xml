@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/teamParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,35 +11,50 @@
         android:id="@+id/teamNumber"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_weight="0"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="38dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="?attr/listPreferredItemPaddingRight"
         android:text="3082"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/teamName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/teamName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="center|center_horizontal|center_vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="43dp"
+        android:autoText="false"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
         android:paddingRight="?attr/listPreferredItemPaddingRight"
         android:text="Chicken Bot Pie"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toStartOf="@+id/teamImageThumb"
+        app:layout_constraintStart_toEndOf="@+id/teamNumber"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/teamImageThumb"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_weight="0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
         android:cropToPadding="false"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
         android:paddingTop="8dp"
         android:paddingRight="?attr/listPreferredItemPaddingRight"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/teamNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/teamName"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_camera" />
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
